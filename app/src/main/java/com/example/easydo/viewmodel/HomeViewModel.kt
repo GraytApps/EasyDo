@@ -54,8 +54,8 @@ class HomeViewModel @Inject constructor(
 
     fun setTodoCompleted(todo: Todo, completed: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
-            todo.completed = completed
-            todoRepository.addTodo(todo)
+            val updatedTodo = todo.copy(completed = completed)
+            todoRepository.addTodo(updatedTodo)
         }
     }
 }

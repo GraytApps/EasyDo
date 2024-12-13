@@ -1,6 +1,5 @@
 package com.example.easydo.model
 
-import androidx.room.Database
 import com.example.easydo.room.AppDatabase
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
