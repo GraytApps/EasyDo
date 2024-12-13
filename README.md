@@ -1,4 +1,6 @@
-Sample To List Android App
+![Screenshot](https://drive.google.com/file/d/1mC1jxXl82Ok6bkLW4-lOq2tGTEB7DW3X/view?usp=sharing)
+
+Sample Android App Using Keen
 =============================
 
 This is a sample Android App that allows users to create a todo list.
@@ -29,5 +31,9 @@ Connect an Android device to your development machine.
 
 
 ## Using the Sample App
+
+Placeholder
+
+## Development decisions
 
 Placeholder
