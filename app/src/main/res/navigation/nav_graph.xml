@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.easydo.HomeFragment"
+        android:label="@string/home_fragment_label"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/new_todo_action"
+            app:destination="@id/newTodoFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+        <action
+            android:id="@+id/edit_todo_action"
+            app:destination="@id/newTodoFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out">
+            <argument
+                android:name="todo_id"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <!-- Label will be set in NewTodoFragment since it can be either in "new" or "edit" mode -->
+    <fragment
+        android:id="@+id/newTodoFragment"
+        android:name="com.example.easydo.NewTodoFragment"
+        tools:layout="@layout/fragment_new_todo">
+        <action
+            android:id="@+id/action_newTodoFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+    </fragment>
+</navigation>

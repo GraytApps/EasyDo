@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Easy Do</string>
+    <string name="action_settings">Settings</string>
+    <string name="home_fragment_label">My Todo List</string>
+    <string name="new_todo_fragment_label">New Todo</string>
+    <string name="edit_todo_fragment_label">Edit Todo</string>
+    <string name="save">Save</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_complete">Mark as complete</string>
+    <string name="completed">Completed</string>
+    <string name="alert_empty_todo_title">Cannot save</string>
+    <string name="alert_empty_todo_message">There is nothing to save. Please ensure a title or description has been set before saving.</string>
+    <string name="ok">OK</string>
+</resources>
