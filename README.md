@@ -1,9 +1,7 @@
-![Screenshot](hhttps://drive.google.com/uc?export=view&id=1mC1jxXl82Ok6bkLW4-lOq2tGTEB7DW3X)
-
-Sample Android App Using Keen
+Sample To List Android App
 =============================
 
-This is a sample Android App that allows users to create a todo list.
+This is a sample Android App that allows users to create a todo list of items.
 
 ## Building the Sample App
 
