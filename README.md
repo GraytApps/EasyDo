@@ -1,4 +1,4 @@
-![Screenshot](https://drive.google.com/file/d/1mC1jxXl82Ok6bkLW4-lOq2tGTEB7DW3X/view?usp=sharing)
+![Screenshot](hhttps://drive.google.com/uc?export=view&id=1mC1jxXl82Ok6bkLW4-lOq2tGTEB7DW3X)
 
 Sample Android App Using Keen
 =============================
