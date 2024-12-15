@@ -5,14 +5,14 @@ Sample To Do List Android App
 
 This is a sample Android App that allows users to create a todo list of items.
 
+## Demo
+Find a demo of the app [here](https://drive.google.com/file/d/12FRRwHOvwYajil_gxMVnIRgxZX60e7gD/view?usp=share_link)
+
 ## Building the Sample App
 
 First, clone the repo:
 
 `git clone https://github.com/GraytApps/EasyDo.git`
-
-### Demo
-Find a demo of the app [here](https://drive.google.com/file/d/12FRRwHOvwYajil_gxMVnIRgxZX60e7gD/view?usp=share_link)
 
 ### Android Studio
 
