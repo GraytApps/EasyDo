@@ -17,8 +17,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 data class NewTodoUiState(
-    val editingTodo: Todo? = null,
-    val validationStatus: TodoValidationStatus? = null
+    val editingTodo: Todo? = null
 )
 
 @HiltViewModel
@@ -30,37 +29,45 @@ class NewTodoViewModel @Inject constructor(
     private val _newTodoUiState = MutableStateFlow(NewTodoUiState())
     val newTodoUiState: StateFlow<NewTodoUiState> = _newTodoUiState.asStateFlow()
 
-    fun saveTodo(title: String, description: String, completed: Boolean = false): Boolean {
+    /**
+     * Saves a to-do item
+     * @param title the title of the to-do
+     * @param description the description of the to-do
+     * @param completed whether or not this to-do item has been completed.
+     * It is not possible for the user to set newly created to-do items to completed when initially creating them.
+     *
+     * @return The status of the to-do item that the user attempted to save. If the result is not [TodoValidationStatus.Valid],
+     * an alert dialog should be shown explaining to the user what went wrong.
+     */
+    fun saveTodo(title: String, description: String, completed: Boolean): TodoValidationStatus {
         val newTodo = Todo(
             title = title,
             description = description,
-            completed = false
+            completed = completed
         )
 
-        // If the user was editing an existing item, we ensure that the old item will get overwritten
-        // with new values instead of creating a new item.
+        // When editing an existing to-do item, set its ID to match the item being edited.
+        // This ensures the updated values overwrite the existing item, rather than creating a new one.
         _newTodoUiState.value.editingTodo?.let {
             newTodo.uid = it.uid
-            newTodo.completed = it.completed
         }
 
-        // Before saving, ensure that the todo is valid and can be saved
-        if (textValidation.validateTodo(newTodo) != TodoValidationStatus.Valid) {
-            _newTodoUiState.update { uiState ->
-                uiState.copy(
-                    validationStatus = TodoValidationStatus.Empty
-                )
+        // Before saving, we ensure that the to-do is valid and can be saved
+        val textValidation = textValidation.validateTodo(newTodo)
+        if (textValidation == TodoValidationStatus.Valid) {
+            viewModelScope.launch(Dispatchers.IO) {
+                todoRepository.addTodo(newTodo)
             }
-            return false
         }
 
-        viewModelScope.launch(Dispatchers.IO) {
-            todoRepository.addTodo(newTodo)
-        }
-
-        return true
+        return textValidation
     }
 
+    /**
+     * Sets the to-do item that the user is editing.
+     *
+     * @param todoId the id of the to-do item. The id is used to access the To-do object from Room.
+     */
     fun editTodo(todoId: String) {
         viewModelScope.launch(Dispatchers.IO) {
             val editingTodo = todoRepository.getTodoById(todoId)
@@ -75,22 +82,14 @@ class NewTodoViewModel @Inject constructor(
         }
     }
 
-    // No item needs to be passed since the NewTodoFragment can only edit one single item - the one that was passed in
-    // and we already have a reference to it (editingTodo)
+    /**
+     * Sets the to-do item as completed. This change will not be persisted until [saveTodo] is called.
+     *
+     * @param completed whether or not the to-do item is completed
+     */
     fun setTodoCompleted(completed: Boolean) {
         _newTodoUiState.value.editingTodo?.let {
-            viewModelScope.launch(Dispatchers.IO) {
-                it.completed = completed
-                todoRepository.addTodo(it)
-            }
-        }
-    }
-
-    fun validationAlertShown() {
-        _newTodoUiState.update { uiState ->
-            uiState.copy(
-                validationStatus = null
-            )
+            it.completed = completed
         }
     }
 }

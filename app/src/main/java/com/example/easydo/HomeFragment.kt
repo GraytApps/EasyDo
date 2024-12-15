@@ -7,14 +7,11 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.example.easydo.adapter.TodoItemListener
 import com.example.easydo.adapter.TodoListAdapter
@@ -48,16 +45,16 @@ class HomeFragment : Fragment(), TodoItemListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       registerForContextMenu(binding.recyclerView)
+        // Recycler view setup
+        registerForContextMenu(binding.recyclerView)
+        binding.recyclerView.addItemDecoration(MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.todo_list_item_margin)))
 
-        binding.recyclerView.addItemDecoration(
-            MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.todo_list_item_margin))
-        )
-
-        binding.fab.setOnClickListener { fabView ->
+        // Listen for fab clicks
+        binding.fab.setOnClickListener { _ ->
             findNavController().navigate(HomeFragmentDirections.newTodoAction())
         }
 
+        // Listen and react to UI state changes emitted by Flow that is hosted in HomeViewModel
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.homeUiState.collect { state ->
@@ -94,6 +91,7 @@ class HomeFragment : Fragment(), TodoItemListener {
         return when (item.itemId) {
             R.id.action_edit -> {
                 viewModel.todoForContextMenu?.let {
+                    // Pass in the todo id so that NewTodoFragment can access it from Room
                     findNavController().navigate(HomeFragmentDirections.editTodoAction(todoId = it.uid))
                 }
                 true

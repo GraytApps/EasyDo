@@ -4,6 +4,9 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * Decoration class which applies the correct amount of padding to [RecyclerView] items based on their position.
+ */
 class MarginItemDecoration(private val spaceSize: Int) : RecyclerView.ItemDecoration() {
     override fun getItemOffsets(
         outRect: Rect, view: View,

@@ -31,7 +31,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             todoRepository.todoItems.collect { todos ->
 
-                // Update view with latest todo items
+                // Update view with latest to-do items
                 _homeUiState.update { uiState ->
                     val sortedTodoItems = todos.sortedBy { it.creationDate }
                     uiState.copy(

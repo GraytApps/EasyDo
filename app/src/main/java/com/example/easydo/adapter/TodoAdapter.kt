@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.easydo.R
 import com.example.easydo.model.Todo
 
+/**
+ * This class is the bridge between the To-do data layer and the [RecyclerView] UI.
+ */
 class TodoListAdapter(
     private val dataSet: Array<Todo>,
     private val todoItemListener: TodoItemListener
@@ -65,6 +68,10 @@ class TodoListAdapter(
 
 }
 
+/**
+ * This interface creates a channel between the adapter and the hosting Activity/Fragment,
+ * so that user interaction events can be propagated upwards.
+ */
 interface TodoItemListener {
     fun onCheckChanged(todo: Todo, checked: Boolean)
     fun onLongClick(todo: Todo)
