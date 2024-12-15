@@ -1,6 +1,6 @@
 <img src="https://github.com/user-attachments/assets/3e7675e6-3e56-4cc7-a457-03e3c99ac7c3" height="650" />
 
-Sample To List Android App
+Sample To Do List Android App
 =============================
 
 This is a sample Android App that allows users to create a todo list of items.
