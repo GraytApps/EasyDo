@@ -9,7 +9,7 @@ This is a sample Android App that allows users to create a todo list of items.
 
 First, clone the repo:
 
-`git clone git@github.com:graytapps/EasyDo.git`
+`git clone https://github.com/GraytApps/EasyDo.git`
 
 ### Android Studio
 
@@ -22,18 +22,21 @@ First, clone the repo:
 
 ## Running the Sample App
 
-Connect an Android device to your development machine.
+Connect an Android device to your development machine, or use an Android emulator.
 
 ### Android Studio
 
 * Select `Run -> Run 'app'` (or `Debug 'app'`) from the menu bar
 * Select the device you wish to run the app on and click 'OK'
 
-
 ## Using the Sample App
 
-Placeholder
+* Create new to-do items by clicking on the FAB in the bottom right corner of the home screen.
+* Edit an existing to-do item by simply tapping on it in the home screen.
+* Delete a to-do item by long clicking on it, and then clicking on the 'Delete' option in the popup menu.
 
 ## Development decisions
 
-Placeholder
+* The `SafeArgs` plugin was used to ensure that `NewTodoFragment` would always be passed a `todoId` when editing a `Todo` item.
+* `Hilt` was used to allow the `TodoRepository` to be easily accessible to all `ViewModels` that wish to manipulate the `Todo` items.
+* A single activity approach was incorporated into the code architecture, so that each screen can act as a `Fragment`. This will allow for easier and more scalable future iterations.
