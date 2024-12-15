@@ -42,16 +42,31 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Sets the to-do item that the context menu will be shown for.
+     *
+     * @param todo the to-do item that the user long clicked on
+     */
     fun onContextMenuBeingShownFor(todo: Todo) {
         todoForContextMenu = todo
     }
 
+    /**
+     * Deletes a to-do item
+     *
+     * @param todo the to-do that should be deleted
+     */
     fun delete(todo: Todo) {
         viewModelScope.launch(Dispatchers.IO) {
             todoRepository.delete(todo = todo)
         }
     }
 
+    /**
+     * Sets the to-do item as [completed]
+     *
+     * @param completed the completed status of the [todo] item
+     */
     fun setTodoCompleted(todo: Todo, completed: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
             val updatedTodo = todo.copy(completed = completed)
