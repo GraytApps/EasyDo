@@ -8,6 +8,7 @@
     <string name="action_delete">Delete</string>
     <string name="action_edit">Edit</string>
     <string name="action_complete">Mark as complete</string>
+    <string name="action_incomplete">Mark as incomplete</string>
     <string name="completed">Completed</string>
     <string name="alert_empty_todo_title">Cannot save</string>
     <string name="alert_empty_todo_message">There is nothing to save. Please ensure a title or description has been set before saving.</string>

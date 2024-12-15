@@ -7,6 +7,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -83,28 +84,35 @@ class HomeFragment : Fragment(), TodoItemListener {
         menuInfo: ContextMenu.ContextMenuInfo?
     ) {
         super.onCreateContextMenu(menu, v, menuInfo)
-        val inflater: MenuInflater = requireActivity().menuInflater
-        inflater.inflate(R.menu.menu_todo_list_item, menu)
+        menu.add(R.string.action_edit)
+        menu.add(R.string.action_delete)
+
+        viewModel.todoForContextMenu?.let {
+            if (!it.completed) {
+                menu.add(R.string.action_complete)
+            } else {
+                menu.add(R.string.action_incomplete)
+            }
+        }
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_edit -> {
+        return when (item.title) {
+            getString(R.string.action_edit) -> {
                 viewModel.todoForContextMenu?.let {
-                    // Pass in the todo id so that NewTodoFragment can access it from Room
                     findNavController().navigate(HomeFragmentDirections.editTodoAction(todoId = it.uid))
                 }
                 true
             }
-            R.id.action_delete -> {
+            getString(R.string.action_delete) -> {
                 viewModel.todoForContextMenu?.let {
                     viewModel.delete(todo = it)
                 }
                 true
             }
-            R.id.action_complete -> {
+            getString(R.string.action_complete), getString(R.string.action_incomplete) -> {
                 viewModel.todoForContextMenu?.let {
-                    viewModel.setTodoCompleted(todo = it, completed = true)
+                    viewModel.setTodoCompleted(todo = it, completed = !it.completed)
                 }
                 true
             }
