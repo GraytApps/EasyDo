@@ -59,8 +59,16 @@ class HomeFragment : Fragment(), TodoItemListener {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.homeUiState.collect { state ->
-                    val todoListAdapter = TodoListAdapter(state.todoItems.toTypedArray(), this@HomeFragment)
+                    val todoListAdapter =
+                        TodoListAdapter(state.todoItems.toTypedArray(), this@HomeFragment)
                     binding.recyclerView.adapter = todoListAdapter
+
+                    // Show the empty view if not items are saved
+                    binding.emptyLayout.visibility = if (state.todoItems.isEmpty()) {
+                         View.VISIBLE
+                    } else {
+                        View.GONE
+                    }
                 }
             }
         }

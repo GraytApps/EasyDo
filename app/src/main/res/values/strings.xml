@@ -13,4 +13,6 @@
     <string name="alert_empty_todo_title">Cannot save</string>
     <string name="alert_empty_todo_message">There is nothing to save. Please ensure a title or description has been set before saving.</string>
     <string name="ok">OK</string>
+    <string name="empty_todo_list_subtitle">Get started by clicking on the + button to create your first to-do item!</string>
+    <string name="empty_todo_list_title">No to-do items</string>
 </resources>
