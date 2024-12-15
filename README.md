@@ -11,6 +11,9 @@ First, clone the repo:
 
 `git clone https://github.com/GraytApps/EasyDo.git`
 
+### Demo
+Find a demo of the app [here](https://drive.google.com/file/d/12FRRwHOvwYajil_gxMVnIRgxZX60e7gD/view?usp=share_link)
+
 ### Android Studio
 
 (These instructions were tested with Android Studio Ladybug | 2024.2.1 Patch 3)
